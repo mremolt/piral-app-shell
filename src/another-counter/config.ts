@@ -7,9 +7,15 @@ export const anotherCounterConfig = buildSliceConfig({
   name: anotherCounterKey,
   initialState: { counter: 0 },
   reducers: {
-    incrementBy: (state, { value }: { value: number }) => ({ counter: state.counter + value }),
+    incrementBy: (state, { value }: { value: number }) => {
+      state.counter += value;
+    },
     decrementBy: (state, { value }: { value: number }) => ({ counter: state.counter - value }),
-    increment: (state) => ({ counter: state.counter + 1 }),
+    // without return, using immer
+    increment: (state) => {
+      state.counter += 1;
+    },
+    // classic reducer
     decrement: (state) => ({ counter: state.counter - 1 }),
   },
   selectors: {

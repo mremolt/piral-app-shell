@@ -1,5 +1,7 @@
+import { produce } from 'immer';
 import { PiralPlugin } from 'piral';
 import { Observable, map, ReplaySubject, distinctUntilChanged, shareReplay } from 'rxjs';
+import { storeService } from '../store/store.service';
 import { Devtools } from './devtools';
 import {
   ActionForReducer,
@@ -21,8 +23,6 @@ declare global {
 
 export function createStoreApi(): PiralPlugin<PiletStoreApi> {
   return () => {
-    const slices: Record<string, Slice<any, any, any, any>> = {};
-
     return (api) => ({
       registerSlice<
         State,
@@ -48,15 +48,17 @@ export function createStoreApi(): PiralPlugin<PiletStoreApi> {
           }
         });
 
-        slices[name] = {
+        const slice = {
           name,
           initialState,
           actions: reducerKeys.reduce((actions, key) => {
             const reducer = reducers[key];
             type Payload = Parameters<typeof reducer>;
             actions[key] = <ActionForReducer<State, typeof reducer>>((payload: Payload) => {
-              const currentState = api.getData(stateKey) || initialState;
-              const newState = <State>reducer(currentState, payload);
+              const currentState: State = api.getData(stateKey) || initialState;
+              const newState = produce(currentState, (draft) => {
+                return <any>reducer(draft, payload);
+              });
               api.setData(stateKey, newState);
 
               devtools.send(key.toString(), payload, newState);
@@ -73,11 +75,13 @@ export function createStoreApi(): PiralPlugin<PiletStoreApi> {
           }, <SelectorObservables<State, SliceSelectors>>{}),
         };
 
-        return slices[name];
+        storeService.setSlice(slice);
+
+        return slice;
       },
 
-      getSlice<S extends Slice<any, any, any, any>>(name: string): S | undefined {
-        return <S>slices[name];
+      getSlice<S extends Slice<any, any, any, any>>(name: string): S {
+        return storeService.getSlice(name);
       },
     });
   };

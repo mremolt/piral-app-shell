@@ -1,24 +1,52 @@
-module.exports = function (config) {
-  const tsRuleIndex = config.module.rules.findIndex((m) => m.test.toString() === /\.tsx?$/i.toString());
-  const jsRuleIndex = config.module.rules.findIndex((m) => m.test.toString() === /\.m?jsx?$/i.toString());
+const { AngularWebpackPlugin } = require('@ngtools/webpack');
+const CopyPlugin = require('copy-webpack-plugin');
+const { resolve } = require('path');
 
-  config.module.rules.splice(tsRuleIndex, 1, {
-    test: /\.tsx?$/,
-    loader: 'esbuild-loader',
-    options: {
-      loader: 'tsx',
-      target: 'es2021',
-    },
-  });
+module.exports = (config) => {
+  // config.resolve.mainFields = ['fesm2015', 'esm2015', 'module', 'main'];
+  // config.module.rules
+  //   .filter((m) => m.test.toString() === /\.css$/i.toString())
+  //   .forEach((m) => {
+  //     m.exclude = /\.component.css$/i;
+  //   });
 
-  config.module.rules.splice(jsRuleIndex, 1, {
-    test: /\.m?jsx?$/i,
-    loader: 'esbuild-loader',
-    options: {
-      loader: 'jsx',
-      target: 'es2021',
-    },
-  });
+  // config.module.rules
+  //   .filter((m) => m.test.toString() === /\.s[ac]ss$/i.toString())
+  //   .forEach((m) => {
+  //     m.exclude = /\.component.s[ac]ss$/i;
+  //   });
+
+  // const ruleIndex = config.module.rules.findIndex((m) => m.test.toString() === /\.tsx?$/i.toString());
+
+  // config.module.rules.splice(
+  //   ruleIndex,
+  //   1,
+  //   {
+  //     test: /\.[jt]sx?$/,
+  //     loader: '@ngtools/webpack',
+  //     include: resolve(__dirname, 'src'),
+  //   },
+  //   {
+  //     test: /\.component.css$/i,
+  //     use: ['to-string-loader', 'css-loader?esModule=false'],
+  //     include: resolve(__dirname, 'src'),
+  //   },
+  //   {
+  //     test: /\.component.s[ac]ss$/i,
+  //     use: ['to-string-loader', 'css-loader?esModule=false', 'sass-loader'],
+  //     include: resolve(__dirname, 'src'),
+  //   }
+  // );
+
+  // config.plugins.push(
+  //   new AngularWebpackPlugin({
+  //     tsconfig: 'tsconfig.json',
+  //     jitMode: true,
+  //   }),
+  //   new CopyPlugin({
+  //     patterns: [{ from: resolve(__dirname, 'src/assets') }],
+  //   })
+  // );
 
   return config;
 };

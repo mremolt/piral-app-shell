@@ -6,8 +6,17 @@
     "piral"
   ],
   "dependencies": {
+    "@angular/common": "^12.2.7",
+    "@angular/compiler": "^12.2.7",
+    "@angular/core": "^12.2.7",
+    "@angular/platform-browser": "^12.2.7",
+    "@angular/platform-browser-dynamic": "^12.2.7",
+    "@angular/router": "^12.2.7",
+    "@ngrx/component": "^12.4.0",
+    "core-js": "^3.18.0",
     "immer": "^9.0.6",
     "piral": "^0.14.0-pre.3090",
+    "piral-ng": "^0.14.0-pre.3090",
     "reselect": "^4.0.0",
     "rxjs": "^7.3.0"
   },
@@ -18,7 +27,14 @@
   "app": "./src/index.html",
   "pilets": {
     "files": [],
-    "externals": [],
+    "externals": [
+      "@angular/common",
+      "@angular/compiler",
+      "@angular/core",
+      "@angular/platform-browser",
+      "@angular/platform-browser-dynamic",
+      "rxjs"
+    ],
     "scripts": {},
     "validators": {},
     "devDependencies": {},
@@ -29,14 +45,16 @@
     "packageOverrides": {}
   },
   "devDependencies": {
+    "@angular/compiler-cli": "^12.2.7",
+    "@ngtools/webpack": "^12.2.7",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/react-router": "latest",
     "@types/react-router-dom": "latest",
-    "esbuild-loader": "^2.15.1",
+    "copy-webpack-plugin": "^9.0.1",
     "piral-cli": "0.14.0-pre.3090",
-    "piral-cli-webpack5": "^0.13.9",
+    "piral-cli-webpack5": "^0.14.0-pre.3090",
     "typescript": "latest"
   }
 }

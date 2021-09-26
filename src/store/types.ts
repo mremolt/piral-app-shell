@@ -16,7 +16,7 @@ export interface PiletStoreApi {
     config: SliceConfiguration<State, Name, SliceReducers, SliceSelectors>
   ): Slice<State, Name, SliceReducers, SliceSelectors>;
 
-  getSlice<S extends Slice<any, any, any, any>>(name: string): S | undefined;
+  getSlice<S extends Slice<any, any, any, any>>(name: string): S;
 }
 
 export type Action<P> = (payload: P) => void;
