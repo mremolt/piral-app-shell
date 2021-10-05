@@ -6,19 +6,20 @@
     "piral"
   ],
   "dependencies": {
-    "@angular/common": "^12.2.7",
-    "@angular/compiler": "^12.2.7",
-    "@angular/core": "^12.2.7",
-    "@angular/platform-browser": "^12.2.7",
-    "@angular/platform-browser-dynamic": "^12.2.7",
-    "@angular/router": "^12.2.7",
+    "@angular/common": "^12.2.8",
+    "@angular/compiler": "^12.2.8",
+    "@angular/core": "^12.2.8",
+    "@angular/platform-browser": "^12.2.8",
+    "@angular/platform-browser-dynamic": "^12.2.8",
+    "@angular/router": "^12.2.8",
     "@ngrx/component": "^12.4.0",
-    "core-js": "^3.18.0",
+    "core-js": "^3.18.1",
     "immer": "^9.0.6",
-    "piral": "^0.14.0-pre.3090",
-    "piral-ng": "^0.14.0-pre.3090",
+    "piral": "^0.14.0-unstable.3096",
+    "piral-ng": "^0.14.0-unstable.3096",
     "reselect": "^4.0.0",
-    "rxjs": "^7.3.0"
+    "rxjs": "^7.3.1",
+    "zone.js": "^0.11.4"
   },
   "scripts": {
     "start": "piral debug",
@@ -45,16 +46,16 @@
     "packageOverrides": {}
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^12.2.7",
-    "@ngtools/webpack": "^12.2.7",
-    "@types/node": "latest",
-    "@types/react": "latest",
+    "@angular/compiler-cli": "^12.2.8",
+    "@ngtools/webpack": "^12.2.8",
+    "@types/node": "^16.10.2",
+    "@types/react": "^17.0.27",
     "@types/react-dom": "latest",
     "@types/react-router": "latest",
     "@types/react-router-dom": "latest",
     "copy-webpack-plugin": "^9.0.1",
-    "piral-cli": "0.14.0-pre.3090",
-    "piral-cli-webpack5": "^0.14.0-pre.3090",
+    "piral-cli": "0.14.0-unstable.3096",
+    "piral-cli-webpack5": "^0.14.0-unstable.3096",
     "typescript": "latest"
   }
 }
